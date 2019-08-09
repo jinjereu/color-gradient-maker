@@ -40,12 +40,27 @@ class ColorMakerViewController: UIViewController {
 	@IBOutlet weak var bLabel: UILabel!
 	@IBOutlet weak var aLabel: UILabel!
 	
-	var colorValue = ColorValue()
+	@IBOutlet weak var colorList: UITableView!
+	
+	lazy var colorValue = ColorValue()
+	lazy var selectedColors = [UIColor]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		setupView()
+	}
+	
+	private func setupView() {
+		title = "Color Maker"
+		navigationController?.navigationBar.prefersLargeTitles = true
+		
+		rSlider.value = colorValue.rValue
+		gSlider.value = colorValue.gValue
+		bSlider.value = colorValue.bValue
+		aSlider.value = colorValue.aValue
+		
+		updateColorPreview()
 	}
 	
 	@IBAction func rSliderChanged(_ sender: Any) {
@@ -68,13 +83,9 @@ class ColorMakerViewController: UIViewController {
 		updateColorPreview()
 	}
 	
-	private func setupView() {
-		rSlider.value = colorValue.rValue
-		gSlider.value = colorValue.gValue
-		bSlider.value = colorValue.bValue
-		aSlider.value = colorValue.aValue
-		
-		updateColorPreview()
+	@IBAction func addColor(_ sender: Any) {
+		selectedColors.append(colorValue.color)
+		colorList.reloadData()
 	}
 	
 	private func updateColorPreview() {
@@ -88,4 +99,30 @@ class ColorMakerViewController: UIViewController {
 		aLabel.text = "A: \(colorValue.aValue)"
 	}
 }
+
+extension ColorMakerViewController: UITableViewDataSource, UITableViewDelegate {
+	
+	//MARK: - UITableViewDataSource
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return selectedColors.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "colorCell", for: indexPath)
+		
+		guard indexPath.row < selectedColors.count else { return cell }
+		
+		let color = selectedColors[indexPath.row]
+		cell.backgroundColor = color
+		
+		return cell
+	}
+	
+}
+
 
