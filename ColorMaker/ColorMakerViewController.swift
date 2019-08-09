@@ -44,7 +44,7 @@ class ColorMakerViewController: UIViewController {
 	@IBOutlet weak var colorList: UITableView!
 	
 	lazy var colorValue = ColorValue()
-	lazy var selectedColors = [UIColor]()
+	lazy var selectedColors = [ColorValue]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -85,9 +85,19 @@ class ColorMakerViewController: UIViewController {
 	}
 	
 	@IBAction func addColor(_ sender: Any) {
-		selectedColors.append(colorValue.color)
+		selectedColors.append(colorValue)
 		colorList.reloadData()
 		updateGradientColorPreview()
+	}
+	
+	@IBAction func shareColors(_ sender: Any) {
+		//Generate the color strings based on the selected color values
+		let colorStrings = selectedColors.map({ "UIColor.init(red: \($0.rValue), green: \($0.gValue), blue: \($0.bValue), alpha: \($0.aValue))" })
+		
+		print("Colors selected:")
+		for colorString in colorStrings {
+			print(colorString)
+		}
 	}
 	
 	private func updateColorPreview() {
@@ -105,12 +115,12 @@ class ColorMakerViewController: UIViewController {
 		//Update the gradient color preview
 		if let gradientLayer = gradientColorPreview.layer.sublayers?.first as? CAGradientLayer {
 			//Update the colors of the existing CAGradientLayer
-			gradientLayer.colors = selectedColors.map({ $0.cgColor })
+			gradientLayer.colors = selectedColors.map({ $0.color.cgColor })
 		} else {
 			//Add the new gradient layer if it doesn't exist
 			let newLayer = CAGradientLayer()
 			newLayer.frame = gradientColorPreview.frame
-			newLayer.colors = selectedColors.map({ $0.cgColor })
+			newLayer.colors = selectedColors.map({ $0.color.cgColor })
 			gradientColorPreview.layer.insertSublayer(newLayer, at: 0)
 		}
 	}
@@ -133,8 +143,8 @@ extension ColorMakerViewController: UITableViewDataSource, UITableViewDelegate {
 		
 		guard indexPath.row < selectedColors.count else { return cell }
 		
-		let color = selectedColors[indexPath.row]
-		cell.backgroundColor = color
+		let colorValue = selectedColors[indexPath.row]
+		cell.backgroundColor = colorValue.color
 		
 		return cell
 	}

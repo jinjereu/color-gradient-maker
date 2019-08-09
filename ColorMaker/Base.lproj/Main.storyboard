@@ -187,11 +187,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="QtT-b8-aIX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wRn-td-6yN">
-                            <connections>
-                                <action selector="addColor:" destination="BYZ-38-t0r" id="rdm-yh-7qN"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="gNq-hl-P0u">
+                                <connections>
+                                    <action selector="shareColors:" destination="BYZ-38-t0r" id="CIG-X5-Y7M"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="wRn-td-6yN">
+                                <connections>
+                                    <action selector="addColor:" destination="BYZ-38-t0r" id="rdm-yh-7qN"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="aLabel" destination="FZ1-0M-jhN" id="L1z-E5-vO5"/>
