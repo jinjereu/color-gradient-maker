@@ -20,17 +20,27 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQd-2P-Yfs">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nV7-7P-Q79">
+                                        <rect key="frame" x="0.0" y="0.0" width="206" height="460"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="nV7-7P-Q79" firstAttribute="top" secondItem="eQd-2P-Yfs" secondAttribute="top" id="VKb-Cv-Ouk"/>
+                                    <constraint firstItem="nV7-7P-Q79" firstAttribute="leading" secondItem="eQd-2P-Yfs" secondAttribute="leading" id="W8h-aS-4gF"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rCL-Qe-cRw">
-                                <rect key="frame" x="0.0" y="88" width="414" height="460"/>
+                                <rect key="frame" x="208" y="88" width="206" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="colorCell" id="j5N-df-Gv7">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="206" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j5N-df-Gv7" id="E6s-14-fiF">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="206" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -160,14 +170,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="rCL-Qe-cRw" firstAttribute="leading" secondItem="nV7-7P-Q79" secondAttribute="trailing" constant="2" id="0tt-aP-0r6"/>
                             <constraint firstItem="eQd-2P-Yfs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2QE-6I-VC3"/>
-                            <constraint firstItem="rCL-Qe-cRw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="38X-KQ-zP3"/>
                             <constraint firstItem="eQd-2P-Yfs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-774" id="Cjk-7Y-qiK"/>
+                            <constraint firstItem="rCL-Qe-cRw" firstAttribute="width" secondItem="nV7-7P-Q79" secondAttribute="width" id="H62-90-C6e"/>
                             <constraint firstItem="b9N-pr-u2j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Ik8-RQ-qXr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b9N-pr-u2j" secondAttribute="bottom" constant="44" id="R8o-eA-81g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eQd-2P-Yfs" secondAttribute="trailing" id="Ujt-UR-dxo"/>
                             <constraint firstItem="b9N-pr-u2j" firstAttribute="top" secondItem="rCL-Qe-cRw" secondAttribute="bottom" constant="40" id="Voe-Do-0RG"/>
                             <constraint firstItem="rCL-Qe-cRw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fur-O4-5YE"/>
+                            <constraint firstItem="b9N-pr-u2j" firstAttribute="top" secondItem="nV7-7P-Q79" secondAttribute="bottom" constant="40" id="gef-pD-Pth"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b9N-pr-u2j" secondAttribute="trailing" constant="20" id="p0H-En-hxt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eQd-2P-Yfs" secondAttribute="bottom" constant="-34" id="twA-CQ-Szl"/>
                             <constraint firstItem="rCL-Qe-cRw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vRL-q7-haL"/>
@@ -190,6 +202,7 @@
                         <outlet property="colorPreview" destination="eQd-2P-Yfs" id="pEk-wN-Jva"/>
                         <outlet property="gLabel" destination="HQP-oL-pJj" id="rJS-Ni-MmR"/>
                         <outlet property="gSlider" destination="6i1-xi-0zs" id="RZ4-xl-YVd"/>
+                        <outlet property="gradientColorPreview" destination="nV7-7P-Q79" id="8l1-ma-xUx"/>
                         <outlet property="rLabel" destination="sgY-1U-i65" id="y9c-EA-kvh"/>
                         <outlet property="rSlider" destination="7fm-YB-6cc" id="W0X-3W-KxG"/>
                     </connections>

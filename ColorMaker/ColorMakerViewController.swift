@@ -29,6 +29,7 @@ struct ColorValue {
 class ColorMakerViewController: UIViewController {
 
 	@IBOutlet weak var colorPreview: UIView!
+	@IBOutlet weak var gradientColorPreview: UIView!
 	
 	@IBOutlet weak var rSlider: UISlider!
 	@IBOutlet weak var gSlider: UISlider!
@@ -52,7 +53,7 @@ class ColorMakerViewController: UIViewController {
 	}
 	
 	private func setupView() {
-		title = "Color Maker"
+		title = "Color Gradient Maker"
 		navigationController?.navigationBar.prefersLargeTitles = true
 		
 		rSlider.value = colorValue.rValue
@@ -86,6 +87,7 @@ class ColorMakerViewController: UIViewController {
 	@IBAction func addColor(_ sender: Any) {
 		selectedColors.append(colorValue.color)
 		colorList.reloadData()
+		updateGradientColorPreview()
 	}
 	
 	private func updateColorPreview() {
@@ -97,6 +99,20 @@ class ColorMakerViewController: UIViewController {
 		gLabel.text = "G: \(colorValue.gValue)"
 		bLabel.text = "B: \(colorValue.bValue)"
 		aLabel.text = "A: \(colorValue.aValue)"
+	}
+	
+	private func updateGradientColorPreview() {
+		//Update the gradient color preview
+		if let gradientLayer = gradientColorPreview.layer.sublayers?.first as? CAGradientLayer {
+			//Update the colors of the existing CAGradientLayer
+			gradientLayer.colors = selectedColors.map({ $0.cgColor })
+		} else {
+			//Add the new gradient layer if it doesn't exist
+			let newLayer = CAGradientLayer()
+			newLayer.frame = gradientColorPreview.frame
+			newLayer.colors = selectedColors.map({ $0.cgColor })
+			gradientColorPreview.layer.insertSublayer(newLayer, at: 0)
+		}
 	}
 }
 
@@ -124,5 +140,3 @@ extension ColorMakerViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 	
 }
-
-
